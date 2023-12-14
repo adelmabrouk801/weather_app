@@ -17,9 +17,12 @@ export const DetailedWeather = () => {
   const sliderSettings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 800,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: true,
   };
 
   return (
@@ -30,13 +33,28 @@ export const DetailedWeather = () => {
           justifyContent: "center",
           flexDirection: "column",
           alignItems: "center",
-          margin: "25px",
         }}
       >
-        <Typography sx={{ color: "white", fontSize: "50px" }}>
+        <Typography
+          sx={(theme) => ({
+            color: "white",
+            fontSize: "50px",
+            [theme.breakpoints.down("md")]: {
+              fontSize: "25px",
+            },
+          })}
+        >
           Detailed Weather Day Information
         </Typography>
-        <Typography sx={{ color: "white", fontSize: "30px" }}>
+        <Typography
+          sx={(theme) => ({
+            color: "white",
+            fontSize: "25px",
+            [theme.breakpoints.down("md")]: {
+              fontSize: "15px",
+            },
+          })}
+        >
           Drag And see The weather every three hours{" "}
         </Typography>
       </Grid>
@@ -45,7 +63,7 @@ export const DetailedWeather = () => {
         {receivedData.map((day) => (
           <div key={day.dt}>
             <Box
-              sx={{
+              sx={(theme) => ({
                 width: "750px",
                 height: "425px",
                 boxShadow: "10px -2px 20px 2px rgba(0 0 0 / 20%)",
@@ -57,7 +75,12 @@ export const DetailedWeather = () => {
                 flexDirection: "column",
                 justifyContent: "space-around",
                 borderRadius: "32px",
-              }}
+                [theme.breakpoints.down("md")]: {
+                  width: "80vw",
+                  height: "auto",
+                  fontSize: "50%",
+                },
+              })}
             >
               <Grid
                 sx={{
@@ -67,31 +90,48 @@ export const DetailedWeather = () => {
                 }}
               >
                 <Grid>
-                  <Typography sx={{ fontSize: "25px" }}>
+                  <Typography
+                    sx={(theme) => ({
+                      fontSize: "25px",
+                      [theme.breakpoints.down("md")]: {
+                        fontSize: "18px",
+                      },
+                    })}
+                  >
                     {" "}
                     {moment(new Date(day.dt_txt)).format(
                       "dddd , Do MMMM YYYY, h:mm:ss a"
                     )}
                   </Typography>
-                  <Typography sx={{ fontSize: "20px" }}>
+                  <Typography
+                    sx={(theme) => ({
+                      fontSize: "20px",
+                      [theme.breakpoints.down("md")]: {
+                        fontSize: "15px",
+                      },
+                    })}
+                  >
                     {day.weather[0].description}
                   </Typography>
                 </Grid>
               </Grid>
               <Grid
-                sx={{
+                sx={(theme) => ({
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                }}
+                  [theme.breakpoints.down("md")]: {
+                    fontSize: "12px",
+                  },
+                })}
               >
                 <Typography
-                  sx={{
+                  sx={(theme) => ({
                     margin: "10px ",
                     fontWeight: 600,
                     fontSize: "70px",
                     width: "auto",
-                  }}
+                  })}
                 >
                   {Math.round(day.main.temp)}°C
                 </Typography>
@@ -105,7 +145,15 @@ export const DetailedWeather = () => {
                   </Grid>
                 </Grid>
               </Grid>
-              <Grid sx={{ display: "flex", justifyContent: "space-around" }}>
+              <Grid
+                sx={(theme) => ({
+                  display: "flex",
+                  justifyContent: "space-around",
+                  [theme.breakpoints.down("md")]: {
+                    fontSize: "12px",
+                  },
+                })}
+              >
                 <Grid
                   sx={{
                     display: "flex",

@@ -7,6 +7,7 @@ A simple weather application that allows users to get current weather informatio
 - Search for weather information by city name.
 - View current weather details and a 5-day forecast.
 - Locate your current position to get weather information.
+- when Click on record on the table navigate to a detailed weather day with slider every 3 hours weather 
 
 ## Getting Started
 
